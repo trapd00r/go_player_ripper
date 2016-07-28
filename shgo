@@ -1,0 +1,14 @@
+#!/bin/sh
+# vim:ft=zsh:expandtab:
+# shgo USAGE: shgo 
+# pgo  USAGE: pgo N GO_PLAYER
+wget $(
+  for x in $(
+    perl ./pgo 4
+  );
+  do curl -s "$x"                           |
+  grep -Po 'http://gokifu\.com.+/f/.+\.sgf' |
+  perl -pe 's/^.+;//'                       |
+  perl -pe 's;<a href=.;;';
+  done
+);

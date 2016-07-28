@@ -1,0 +1,24 @@
+#!/usr/bin/perl
+# vim: ft=perl:fdm=marker:fmr=#<,#>:fen:et:sw=2:
+use strict;
+
+my $APP = 'pgo';
+
+my ($pages, $go_player);
+($pages, $go_player) = @ARGV;
+$go_player = 'Yoda Norimoto' unless(defined($go_player));
+$go_player =~ s;\s;+;g;
+my $base = 'http://gokifu.com/index.php?p=';
+
+
+for(my $i = 1; $i <= $pages; $i++) {
+  my $url = "${base}${i}&q=${go_player}";
+  print "$url\n";
+}
+
+
+
+#sub usage {
+#  printf "Usage: $APP no_pages go_player\n";
+#  return;
+#}
